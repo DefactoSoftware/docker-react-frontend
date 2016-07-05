@@ -1,16 +1,18 @@
-FROM nodesource/trusty:6.2.0
+FROM node:latest
 
-# Copy files
-COPY . /app
-WORKDIR /app
+# Prepare app directory
+RUN mkdir -p /usr/src/app
+ADD . /usr/src/app
 
-# Set env
-ENV NODE_ENV dev
+# Install dependencies
+WORKDIR /usr/src/app
+RUN npm install
+
+# Build app
+RUN npm run build
 
 # Expose webserver
-EXPOSE 8080/tcp
+EXPOSE 8080
 
-# Install node and dependencies
-RUN npm i
-
-ENTRYPOINT ["npm", "start"]
+# Start server
+CMD [ "npm", "run", "serve" ]
