@@ -1,10 +1,9 @@
-# react-boilerplate
+# docker dotnet react
 
-Minimal react boilerplate with webpack and css modules.
+Serves a react app.
 
 ## Setup
 
-`npm i`
-
-* `npm start` to develop (served on http://localhost:8080/)
-* `npm run build` to build (to `dist`)
+* `docker build .`
+* `docker create --name=react -p=8080:8080 [name of previous build]`
+* access the app on localhost:8080
